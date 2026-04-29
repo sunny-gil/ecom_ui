@@ -12,6 +12,7 @@ import NewsDetail from "../pages/News/NewsDetail";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
+import AuthSuccess from "../pages/Auth/AuthSuccess";
 
 
 export default function AppRoutes() {
@@ -31,6 +32,7 @@ export default function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/auth-success" element={<AuthSuccess />} />
       </Routes>
     </BrowserRouter>
   );

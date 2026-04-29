@@ -2,12 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, User, Bell, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+
 
   const menuRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
@@ -51,15 +56,20 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="flex items-center justify-between px-6 py-4">
+      <div className="flex items-center justify-between px-6 py-1">
 
         {/* Logo */}
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-xl font-bold text-[var(--color-primary)]"
+          className="text-xl font-bold text-[var(--color-primary)] m-0"
+          style={{ opacity: 1, transform: "none" }}
         >
-          P
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="h-15 sm:h-18 md:h-20 w-auto object-contain"
+          />
         </motion.h1>
 
         {/* Desktop Menu */}
@@ -69,8 +79,8 @@ const Header = () => {
               key={link.path}
               to={link.path}
               className={`relative transition ${location.pathname === link.path
-                  ? "text-[var(--color-primary)]"
-                  : "text-gray-700 hover:text-[var(--color-primary)]"
+                ? "text-[var(--color-primary)]"
+                : "text-gray-700 hover:text-[var(--color-primary)]"
                 }`}
             >
               {link.name}
@@ -84,16 +94,18 @@ const Header = () => {
             </Link>
           ))}
         </nav>
-     
+
 
         {/* Right side */}
         <div className="flex items-center gap-4">
-             <button
-          onClick={() => navigate("/login")}
-          className="text-[var(--color-primary)] font-medium"
-        >
-          Login
-        </button>
+          {!user && (
+            <button
+              onClick={() => navigate("/login")}
+              className="text-[var(--color-primary)] font-medium"
+            >
+              Login
+            </button>
+          )}
 
           {/* Avatar */}
           <div className="relative" ref={profileRef}>
@@ -124,7 +136,13 @@ const Header = () => {
                     <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer">
                       <User size={16} /> Profile
                     </li>
-                    <li className="px-4 py-3 hover:bg-red-100 text-red-600 cursor-pointer">
+                    <li
+                      onClick={() => {
+                        logout();
+                        navigate("/login");
+                      }}
+                      className="px-4 py-3 hover:bg-red-100 text-red-600 cursor-pointer"
+                    >
                       Logout
                     </li>
                   </ul>

@@ -21,9 +21,13 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-xl font-bold mb-4">Abhyudaya</h2>
+          <h2 className="text-xl font-bold mb-4"> <img
+                      src="/logo.png"
+                      alt="Logo"
+                      className="h-15 sm:h-18 md:h-20 w-auto object-contain"
+                    /></h2>
           <p className="text-sm text-white/80">
-            Providing trusted Ayurvedic treatment for piles, fissure and fistula with natural healing methods.
+          Experience better living with thoughtfully selected premium products—designed for quality and convenience.
           </p>
         </motion.div>
 

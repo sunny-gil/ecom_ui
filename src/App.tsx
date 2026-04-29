@@ -1,11 +1,14 @@
 import Chatbot from "./components/common/Chatbot";
 import AppRoutes from "./routes/AppRoutes";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <>
-      <AppRoutes />
-      <Chatbot />
+      <AuthProvider>
+        <AppRoutes />
+        <Chatbot />
+      </AuthProvider>
     </>
   );
 }

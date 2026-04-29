@@ -1,19 +1,54 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { loginUser } from "../../api/auth";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleLogin = async () => {
+    setError("");
+
+    if (!form.email || !form.password) {
+      return setError("All fields are required");
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await loginUser(form);
+
+      if (res?.access_token) {
+   
+        login(res.access_token);
+        navigate("/");
+      } else {
+        setError(res?.message || "Login failed");
+      }
+    } catch (err) {
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#f6fbf6] px-6">
-
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
       >
-
-        {/* Heading */}
         <h2 className="text-2xl font-bold text-center">
           Welcome Back
         </h2>
@@ -22,18 +57,22 @@ export default function Login() {
           Login to continue your health journey
         </p>
 
-        {/* Form */}
         <div className="mt-6 space-y-4">
-
           <input
             type="email"
             placeholder="Email"
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
             className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[var(--color-primary)] outline-none"
           />
 
           <input
             type="password"
             placeholder="Password"
+            onChange={(e) =>
+              setForm({ ...form, password: e.target.value })
+            }
             className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[var(--color-primary)] outline-none"
           />
 
@@ -46,27 +85,32 @@ export default function Login() {
             </span>
           </div>
 
+          {error && (
+            <p className="text-red-500 text-sm">{error}</p>
+          )}
+
           <button
-            onClick={() => navigate("/")}
+            onClick={handleLogin}
+            disabled={loading}
             className="w-full py-3 bg-[var(--color-primary)] text-white rounded-xl font-medium hover:opacity-90 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
-
         </div>
 
-        {/* Divider */}
         <div className="flex items-center gap-3 my-6">
           <div className="flex-1 h-px bg-gray-200"></div>
           <span className="text-sm text-gray-400">OR</span>
           <div className="flex-1 h-px bg-gray-200"></div>
         </div>
 
-        {/* Social + Phone */}
         <div className="space-y-3">
-
-          {/* Google */}
-          <button className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition">
+          <button
+            onClick={() => {
+              window.location.href = `${import.meta.env.VITE_API_URL}/v1/auth/google`;
+            }}
+            className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition"
+          >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"
               className="w-5 h-5"
@@ -74,14 +118,11 @@ export default function Login() {
             Continue with Google
           </button>
 
-          {/* Phone */}
           <button className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition">
             📱 Continue with Phone
           </button>
-
         </div>
 
-        {/* Signup */}
         <p className="text-sm text-center text-gray-500 mt-6">
           Don’t have an account?{" "}
           <span
@@ -91,9 +132,7 @@ export default function Login() {
             Sign up
           </span>
         </p>
-
       </motion.div>
-
     </section>
   );
 }
