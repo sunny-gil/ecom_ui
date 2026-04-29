@@ -118,9 +118,9 @@ export default function Login() {
             Continue with Google
           </button>
 
-          <button className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition">
+          {/* <button className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition">
             📱 Continue with Phone
-          </button>
+          </button> */}
         </div>
 
         <p className="text-sm text-center text-gray-500 mt-6">

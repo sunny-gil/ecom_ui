@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
-
-console.log(Icons);
 const Footer = () => {
   return (
     <footer className="relative mt-20 overflow-hidden">

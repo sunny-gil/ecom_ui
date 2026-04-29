@@ -50,9 +50,9 @@ const Products = ({ isPreview = false }: Props) => {
 
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold">Clinic Products</h2>
+          <h2 className="text-4xl font-bold">Explore All Products</h2>
           <p className="text-gray-600 mt-2">
-            Buy products or consult doctor before treatment
+            Browse through a wide range of categories tailored for your needs.
           </p>
         </div>
 
