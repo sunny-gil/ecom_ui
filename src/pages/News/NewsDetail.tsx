@@ -1,158 +1,102 @@
 import { useParams, useNavigate } from "react-router-dom";
-
-const news = [
-  {
-    id: 1,
-    title: "New Ayurvedic Research Breakthrough",
-    content:
-      "Recent studies in Ayurveda have shown significant improvement in treating chronic diseases using herbal formulations and lifestyle changes.",
-    image: "/assets/news1.jpg",
-  },
-  {
-    id: 2,
-    title: "Free Health Camp Organized",
-    content:
-      "Our clinic organized a free health camp offering consultations and awareness programs.",
-    image: "/assets/news2.jpg",
-  },
-  {
-    id: 3,
-    title: "Award for Best Ayurvedic Clinic",
-    content:
-      "We are honored to receive the Best Ayurvedic Clinic award.",
-    image: "/assets/news3.jpg",
-  },
-  {
-    id: 4,
-    title: "New Fistula Therapy Introduced",
-    content:
-      "New Ayurvedic therapy introduced for fistula treatment.",
-    image: "/assets/news4.jpg",
-  },
-  {
-    id: 5,
-    title: "Diet Awareness Seminar",
-    content:
-      "Seminar conducted to educate people about diet importance.",
-    image: "/assets/news5.jpg",
-  },
-  {
-    id: 6,
-    title: "Patient Recovery Success",
-    content:
-      "Patients recovered naturally with Ayurvedic treatments.",
-    image: "/assets/news6.jpg",
-  },
-  {
-    id: 7,
-    title: "Ayurveda Day Celebration",
-    content:
-      "Celebrated Ayurveda Day with awareness sessions.",
-    image: "/assets/news7.jpg",
-  },
-  {
-    id: 8,
-    title: "New Branch Opening",
-    content:
-      "We are opening a new branch to expand services.",
-    image: "/assets/news8.jpg",
-  },
-  {
-    id: 9,
-    title: "Online Consultation Launched",
-    content:
-      "Patients can now consult doctors online.",
-    image: "/assets/news9.jpg",
-  },
-  {
-    id: 10,
-    title: "Special Discount Announced",
-    content:
-      "Limited time discounts available on treatments.",
-    image: "/assets/news10.jpg",
-  },
-  {
-    id: 11,
-    title: "Herbal Awareness Drive",
-    content:
-      "Campaign conducted to promote herbal medicine.",
-    image: "/assets/news11.jpg",
-  },
-  {
-    id: 12,
-    title: "Yoga & Wellness Workshop",
-    content:
-      "Workshop conducted on yoga and healthy lifestyle.",
-    image: "/assets/news12.jpg",
-  },
-];
+import { newsData } from "../../api/newsData";
+import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
+import { ArrowLeft, Calendar } from "lucide-react";
 
 export default function NewsDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const item = news.find((n) => n.id === Number(id));
+  const item = newsData.find((n) => n.id === Number(id));
 
-  if (!item) return <div className="text-center py-20">Not Found</div>;
-
-  return (
-    <section className="bg-gradient-to-b from-white to-[#f6fbf6] py-16 px-6">
-
-      <div className="max-w-4xl mx-auto">
-
-        {/* Back */}
-        <button
-          onClick={() => navigate(-1)}
-          className="mb-6 text-[var(--color-primary)] font-medium"
-        >
-          ← Back
-        </button>
-
-        {/* Image */}
-        <div className="overflow-hidden rounded-2xl shadow-lg">
-          <img
-            src={item.image}
-            className="w-full h-72 object-cover"
-          />
-        </div>
-
-        {/* Content Card */}
-        <div className="bg-white rounded-2xl shadow-md p-6 mt-6">
-
-          {/* Title */}
-          <h1 className="text-3xl font-bold text-gray-900">
-            {item.title}
-          </h1>
-
-          {/* Divider */}
-          <div className="w-16 h-1 bg-[var(--color-primary)] mt-3 rounded"></div>
-
-          {/* Content */}
-          <p className="mt-4 text-gray-700 leading-relaxed text-lg">
-            {item.content}
-          </p>
-
-        </div>
-
-        {/* CTA */}
-        <div className="mt-10 bg-[#f6fbf6] p-6 rounded-2xl text-center shadow-sm">
-          <h3 className="text-xl font-semibold">
-            Need expert advice?
-          </h3>
-
-          <p className="text-gray-600 mt-2">
-            Book a consultation with our Ayurvedic specialist
-          </p>
-
-          <button
-            onClick={() => navigate("/book-appointment")}
-            className="mt-4 px-6 py-3 bg-[var(--color-primary)] text-white rounded-xl"
+  if (!item) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800">Article Not Found</h2>
+          <button 
+            onClick={() => navigate("/news")} 
+            className="mt-4 px-6 py-2 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition"
           >
-            Book Appointment
+            Back to Newsroom
           </button>
         </div>
-
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50/50">
+      <Header />
+      
+      <main className="flex-grow pt-28 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="mb-8 flex items-center text-gray-600 hover:text-green-700 font-bold transition group"
+          >
+            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to All Releases
+          </button>
+
+          <article className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 p-6 md:p-10">
+            
+            {/* Meta */}
+            <div className="flex items-center gap-4 mb-6 flex-wrap">
+              <span className="bg-green-50 text-green-700 font-bold text-sm px-4 py-1.5 rounded-full shadow-sm">
+                {item.category}
+              </span>
+              <div className="flex items-center text-gray-500 text-sm">
+                <Calendar className="w-4 h-4 mr-1.5" />
+                {item.date}
+              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+              {item.title}
+            </h1>
+
+            {/* Image */}
+            <div className="h-96 w-full rounded-2xl overflow-hidden mb-10 shadow-lg bg-gray-50 flex items-center justify-center">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <p className="text-gray-700 text-lg leading-relaxed mb-10 whitespace-pre-wrap font-medium">
+              {item.content}
+            </p>
+
+            {/* Premium CTA */}
+            <div className="mt-12 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100/50 p-8 rounded-2xl text-center shadow-inner relative overflow-hidden">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-green-200/20 rounded-full blur-2xl pointer-events-none" />
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-2">
+                Elevate Your Everyday
+              </h3>
+              <p className="text-gray-600 max-w-lg mx-auto mb-6">
+                Ready to experience uncompromising purity? Explore our product portal.
+              </p>
+              <button
+                onClick={() => navigate("/products")}
+                className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+              >
+                Shop Our Collection
+              </button>
+            </div>
+
+          </article>
+
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 }

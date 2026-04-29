@@ -505,9 +505,9 @@ const Home = () => {
         </div>
       </section>
 
-      <Products isPreview={true} />
+      <Products isPreview={true} categoryLimit="true" />
       <Services isPreview={true} />
-      <Testimonials />
+      <Testimonials isPreview={true} />
       <Footer />
     </>
   );

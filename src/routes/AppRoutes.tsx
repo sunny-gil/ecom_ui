@@ -4,6 +4,7 @@ import About from "../pages/About/About";
 import ServicesPage from "../pages/Services/ServicesPage";
 import BookAppointment from "../pages/BookAppointment/BookAppointment";
 import Products from "../pages/Products/Products";
+import ProductDetail from "../pages/Products/ProductDetail";
 import Blogs from "../pages/Blogs/Blogs";
 import BlogDetail from "../pages/Blogs/BlogDetail";
 import Testimonials from "../pages/Testimonials/Testimonials";
@@ -21,7 +22,8 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Products" element={<Products />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:id" element={<BlogDetail />} />

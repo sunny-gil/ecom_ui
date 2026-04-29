@@ -1,187 +1,95 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
-const blogs = [
-    {
-        id: 1,
-        title: "Ayurvedic Treatment for Piles",
-        shortDesc: "Safe and natural piles treatment.",
-        content:
-            "Ayurvedic treatment for piles focuses on eliminating the root cause using herbal medicines, diet correction, and lifestyle changes. It provides long-term relief without surgery and helps prevent recurrence.",
-        image: "/assets/blog1.jpg",
-    },
-    {
-        id: 2,
-        title: "How to Improve Digestion Naturally",
-        shortDesc: "Boost digestion with Ayurveda.",
-        content:
-            "Digestive health can be improved through Ayurvedic herbs, proper meal timing, and mindful eating. Avoid processed food and include natural detox practices.",
-        image: "/assets/blog2.jpg",
-    },
-    {
-        id: 3,
-        title: "Skin Care with Ayurveda",
-        shortDesc: "Natural glowing skin tips.",
-        content:
-            "Ayurveda promotes detoxification, herbal pastes, and a balanced diet to achieve healthy glowing skin without harmful chemicals.",
-        image: "/assets/blog3.jpg",
-    },
-    {
-        id: 4,
-        title: "Benefits of Herbal Medicine",
-        shortDesc: "Why choose herbal treatments?",
-        content:
-            "Herbal medicines are natural, safe, and focus on root cause healing. They reduce side effects and improve overall health.",
-        image: "/assets/blog4.jpg",
-    },
-    {
-        id: 5,
-        title: "Daily Ayurvedic Routine (Dinacharya)",
-        shortDesc: "Healthy lifestyle habits.",
-        content:
-            "Dinacharya includes waking early, oil pulling, yoga, and a balanced diet to maintain physical and mental health.",
-        image: "/assets/blog5.jpg",
-    },
-    {
-        id: 6,
-        title: "Yoga for Better Health",
-        shortDesc: "Simple yoga for daily life.",
-        content:
-            "Yoga improves flexibility, reduces stress, and supports overall well-being when practiced regularly.",
-        image: "/assets/blog6.jpg",
-    },
-    {
-        id: 7,
-        title: "Natural Remedies for Constipation",
-        shortDesc: "Improve gut health naturally.",
-        content:
-            "Constipation can be treated using Ayurvedic herbs, hydration, and fiber-rich foods.",
-        image: "/assets/blog7.jpg",
-    },
-    {
-        id: 8,
-        title: "Importance of Detox in Ayurveda",
-        shortDesc: "Cleanse your body naturally.",
-        content:
-            "Detoxification removes toxins and improves digestion, immunity, and energy levels.",
-        image: "/assets/blog8.jpg",
-    },
-    {
-        id: 9,
-        title: "How to Boost Immunity Naturally",
-        shortDesc: "Strong immune system tips.",
-        content:
-            "Immunity can be improved through herbs, proper sleep, diet, and stress management.",
-        image: "/assets/blog9.jpg",
-    },
-    {
-        id: 10,
-        title: "Ayurvedic Diet Guide",
-        shortDesc: "Eat according to body type.",
-        content:
-            "Ayurvedic diet depends on your body type (dosha) and helps maintain balance and health.",
-        image: "/assets/blog10.jpg",
-    },
-    {
-        id: 11,
-        title: "Stress Management with Ayurveda",
-        shortDesc: "Reduce stress naturally.",
-        content:
-            "Meditation, breathing exercises, and herbs help in managing stress effectively.",
-        image: "/assets/blog11.jpg",
-    },
-    {
-        id: 12,
-        title: "Hair Care Using Ayurveda",
-        shortDesc: "Strong and healthy hair.",
-        content:
-            "Herbal oils and proper nutrition help prevent hair fall and improve scalp health.",
-        image: "/assets/blog12.jpg",
-    },
-    {
-        id: 13,
-        title: "Natural Treatment for Acidity",
-        shortDesc: "Control acidity naturally.",
-        content:
-            "Ayurvedic herbs and proper diet can help manage acidity and improve digestion.",
-        image: "/assets/blog13.jpg",
-    },
-    {
-        id: 14,
-        title: "Benefits of Meditation",
-        shortDesc: "Improve mental health.",
-        content:
-            "Meditation enhances focus, reduces stress, and improves emotional well-being.",
-        image: "/assets/blog14.jpg",
-    },
-    {
-        id: 15,
-        title: "Healthy Sleep Routine",
-        shortDesc: "Improve sleep naturally.",
-        content:
-            "Ayurveda suggests regular sleep timing, herbal drinks, and relaxation techniques for better sleep.",
-        image: "/assets/blog15.jpg",
-    },
-];
+import { blogsData } from "../../api/blogsData";
+import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
 
 export default function Blogs() {
   const navigate = useNavigate();
+  const visibleBlogs = blogsData;
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-white to-[#f6fbf6]">
-      <div className="max-w-7xl mx-auto text-center">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50/30 to-white">
+      <Header />
+      
+      <main className="flex-grow pt-28 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Header */}
+          <div className="text-center mb-16">
+            <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 px-4 py-1.5 rounded-full">
+              Read & Learn
+            </span>
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-4 mb-4">
+              Our Premium Journal
+            </h1>
+            <p className="text-gray-600 text-lg max-w-xl mx-auto">
+              Tips, recipes, and lifestyle guides crafted by industry experts.
+            </p>
+          </div>
 
-        {/* Heading */}
-        <h2 className="text-4xl font-bold text-gray-900">
-          Our Blogs
-        </h2>
+          {/* Grid */}
+          <motion.div 
+            layout
+            className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <AnimatePresence>
+              {visibleBlogs.map((blog) => (
+                <motion.div
+                  layout
+                  key={blog.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -8 }}
+                  onClick={() => navigate(`/blogs/${blog.id}`)}
+                  className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 flex flex-col group"
+                >
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                      {blog.category}
+                    </span>
+                  </div>
 
-        <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-          Read health tips, Ayurvedic insights, and lifestyle guidance.
-        </p>
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                      <span>{blog.date}</span>
+                      <span>•</span>
+                      <span>{blog.readTime}</span>
+                    </div>
 
-        {/* Grid */}
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
+                      {blog.title}
+                    </h3>
 
-          {blogs.map((blog, i) => (
-            <motion.div
-              key={blog.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
-              onClick={() => navigate(`/blogs/${blog.id}`)}
-              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer overflow-hidden"
-            >
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                      {blog.shortDesc}
+                    </p>
 
-              {/* Image */}
-              <img
-                src={blog.image}
-                className="w-full h-44 object-cover"
-              />
-
-              {/* Content */}
-              <div className="p-6 text-left">
-
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {blog.title}
-                </h3>
-
-                <p className="text-sm text-gray-600 mt-2">
-                  {blog.shortDesc}
-                </p>
-
-                <span className="text-[var(--color-primary)] text-sm mt-3 inline-block">
-                  Read More →
-                </span>
-
-              </div>
-
-            </motion.div>
-          ))}
+                    <span className="mt-auto flex items-center text-green-600 font-bold text-sm group-hover:text-green-800 transition">
+                      Read Full Article 
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
         </div>
-      </div>
-    </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
