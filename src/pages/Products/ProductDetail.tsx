@@ -29,7 +29,7 @@ const ProductDetail = () => {
       if (productData) {
         setRelatedProducts(
           allProducts
-            .filter((p) => p.category === productData.category && p.id !== productData.id)
+            .filter((p: Product) => p.category === productData.category && p.id !== productData.id)
             .slice(0, 3)
         );
       }
