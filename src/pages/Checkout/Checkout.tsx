@@ -121,23 +121,66 @@ export default function Checkout() {
                   <div className="p-6 border-t border-gray-100">
                     <div className="space-y-4">
                       
-                      <label className={`flex items-center p-4 border rounded-xl cursor-pointer transition ${paymentMethod === 'card' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
-                        <input type="radio" name="payment" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} className="w-5 h-5 text-green-600" />
-                        <CreditCard className="ml-4 mr-3 text-gray-500" />
-                        <span className="font-medium text-gray-900">Credit / Debit Card</span>
-                      </label>
+                      {/* Card Payment */}
+                      <div className={`border rounded-xl transition ${paymentMethod === 'card' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
+                        <label className="flex items-center p-4 cursor-pointer">
+                          <input type="radio" name="payment" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} className="w-5 h-5 text-green-600" />
+                          <CreditCard className="ml-4 mr-3 text-gray-500" />
+                          <span className="font-medium text-gray-900">Credit / Debit Card</span>
+                        </label>
+                        {paymentMethod === 'card' && (
+                          <div className="p-4 pt-0 border-t border-green-100">
+                            <div className="grid grid-cols-2 gap-4 mt-4">
+                              <div className="col-span-2">
+                                <input type="text" placeholder="Card Number" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" />
+                              </div>
+                              <div>
+                                <input type="text" placeholder="MM/YY" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" />
+                              </div>
+                              <div>
+                                <input type="password" placeholder="CVV" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" maxLength={4} />
+                              </div>
+                              <div className="col-span-2">
+                                <input type="text" placeholder="Name on Card" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
 
-                      <label className={`flex items-center p-4 border rounded-xl cursor-pointer transition ${paymentMethod === 'upi' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
-                        <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-5 h-5 text-green-600" />
-                        <Wallet className="ml-4 mr-3 text-gray-500" />
-                        <span className="font-medium text-gray-900">UPI / Wallets</span>
-                      </label>
+                      {/* UPI Payment */}
+                      <div className={`border rounded-xl transition ${paymentMethod === 'upi' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
+                        <label className="flex items-center p-4 cursor-pointer">
+                          <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-5 h-5 text-green-600" />
+                          <Wallet className="ml-4 mr-3 text-gray-500" />
+                          <span className="font-medium text-gray-900">UPI / Wallets</span>
+                        </label>
+                        {paymentMethod === 'upi' && (
+                          <div className="p-4 pt-0 border-t border-green-100">
+                            <div className="mt-4 flex gap-4">
+                              <input type="text" placeholder="Enter UPI ID (e.g., john@okhdfcbank)" className="flex-grow px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" />
+                              <button className="px-6 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition">Verify</button>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-2">A payment request will be sent to your UPI app.</p>
+                          </div>
+                        )}
+                      </div>
 
-                      <label className={`flex items-center p-4 border rounded-xl cursor-pointer transition ${paymentMethod === 'cod' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
-                        <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-5 h-5 text-green-600" />
-                        <Truck className="ml-4 mr-3 text-gray-500" />
-                        <span className="font-medium text-gray-900">Cash on Delivery</span>
-                      </label>
+                      {/* Cash on Delivery */}
+                      <div className={`border rounded-xl transition ${paymentMethod === 'cod' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
+                        <label className="flex items-center p-4 cursor-pointer">
+                          <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-5 h-5 text-green-600" />
+                          <Truck className="ml-4 mr-3 text-gray-500" />
+                          <span className="font-medium text-gray-900">Cash on Delivery</span>
+                        </label>
+                        {paymentMethod === 'cod' && (
+                          <div className="p-4 pt-0 border-t border-green-100">
+                            <p className="text-sm text-gray-600 mt-3 flex items-center gap-2">
+                              <CheckCircle size={16} className="text-green-600" /> You can pay via Cash or UPI to the delivery executive.
+                            </p>
+                          </div>
+                        )}
+                      </div>
 
                     </div>
                   </div>
