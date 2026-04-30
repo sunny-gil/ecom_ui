@@ -75,10 +75,10 @@ const Footer = () => {
         >
           <h3 className="font-semibold mb-4">Follow Us</h3>
           <div className="flex gap-4">
-            <motion.a 
-              href="https://facebook.com" 
-              target="_blank" 
-              rel="noreferrer" 
+            <motion.a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noreferrer"
               whileHover={{ scale: 1.2, rotate: 8, backgroundColor: "#1877F2" }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/10 rounded-xl cursor-pointer transition-all duration-300 flex items-center justify-center text-white"
@@ -86,10 +86,10 @@ const Footer = () => {
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </motion.a>
 
-            <motion.a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noreferrer" 
+            <motion.a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
               whileHover={{ scale: 1.2, rotate: -8, background: "linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7)" }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/10 rounded-xl cursor-pointer transition-all duration-300 flex items-center justify-center text-white"
@@ -97,10 +97,10 @@ const Footer = () => {
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </motion.a>
 
-            <motion.a 
-              href="https://twitter.com" 
-              target="_blank" 
-              rel="noreferrer" 
+            <motion.a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noreferrer"
               whileHover={{ scale: 1.2, rotate: 8, backgroundColor: "#1DA1F2" }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-white/10 rounded-xl cursor-pointer transition-all duration-300 flex items-center justify-center text-white"
@@ -120,4 +120,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer; 
