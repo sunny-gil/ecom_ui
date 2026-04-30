@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { productsData } from "../../api/productsData";
+import { apiService } from "../../api/apiService";
+import type { Product } from "../../api/productsData";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
@@ -9,12 +10,41 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"description" | "usage" | "precautions" | "storage">("description");
-
-  const product = productsData.find((p) => p.id === Number(id));
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
+
+    Promise.all([
+      apiService.getProductById(Number(id)),
+      apiService.getProducts()
+    ]).then(([productData, allProducts]) => {
+      setProduct(productData);
+      if (productData) {
+        setRelatedProducts(
+          allProducts
+            .filter((p) => p.category === productData.category && p.id !== productData.id)
+            .slice(0, 3)
+        );
+      }
+      setLoading(false);
+    });
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-grow flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -35,10 +65,6 @@ const ProductDetail = () => {
       </div>
     );
   }
-
-  const relatedProducts = productsData
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -82,7 +108,7 @@ const ProductDetail = () => {
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
                   <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
-                  
+
                   {/* Rating & Reviews */}
                   <div className="flex items-center mb-6">
                     <div className="flex text-yellow-400">
@@ -96,7 +122,7 @@ const ProductDetail = () => {
                   </div>
 
                   <p className="text-3xl font-extrabold text-green-700 mb-6">₹{product.price}</p>
-                  
+
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                     {product.shortDesc}
                   </p>
@@ -114,7 +140,7 @@ const ProductDetail = () => {
                     <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
                       Add to Cart
                     </button>
-                    <button 
+                    <button
                       onClick={() => navigate("/book-appointment")}
                       className="flex-1 bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 py-4 rounded-xl font-bold text-lg transition-all"
                     >
@@ -132,9 +158,8 @@ const ProductDetail = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab as any)}
-                    className={`pb-4 px-2 text-lg font-medium capitalize border-b-2 transition-colors ${
-                      activeTab === tab ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-800'
-                    }`}
+                    className={`pb-4 px-2 text-lg font-medium capitalize border-b-2 transition-colors ${activeTab === tab ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-800'
+                      }`}
                     style={{ marginBottom: '-17px' }}
                   >
                     {tab}
@@ -177,9 +202,9 @@ const ProductDetail = () => {
                     className="bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-all hover:-translate-y-2 group"
                   >
                     <div className="h-48 overflow-hidden bg-gray-50 flex items-center justify-center">
-                      <img 
-                        src={rp.image} 
-                        alt={rp.name} 
+                      <img
+                        src={rp.image}
+                        alt={rp.name}
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>

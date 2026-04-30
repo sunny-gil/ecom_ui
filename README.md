@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# Abhyudaya UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Abhyudaya UI** repository! This is a premium, high-performance web application built for an ultra-premium lifestyle and e-commerce brand. It seamlessly integrates luxury product shopping (Coffee, Organic Food, Cosmetics, Hydration) with exclusive lifestyle services.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Ultra-Premium Design:** Crafted with a modern, cinematic aesthetic using Tailwind CSS and custom animations.
+- **Dynamic Hero Slider:** A highly interactive, 3D animated hero section showcasing various product categories.
+- **Responsive Layout:** Fully responsive across all devices (mobile, tablet, and desktop).
+- **Smooth Animations:** Powered by `framer-motion` for fluid page transitions and micro-interactions.
+- **Mock API Architecture:** Data is fetched asynchronously via a robust mock API service, paving the way for easy backend integration.
+- **Comprehensive Sections:** Includes specialized pages for Products, Services, Blogs, News, Testimonials, and About Us.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** [React 18](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Routing:** [React Router v6](https://reactrouter.com/)
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── animations/       # Reusable Framer Motion variants
+├── api/              # Mock API services and static data files
+│   ├── apiService.ts # Main API service for data fetching
+│   ├── homeData.ts   # Data for the hero slider
+│   ├── productsData.ts
+│   └── ...
+├── assets/           # Images, fonts, and static assets
+├── components/       # Reusable UI components (Header, Footer, etc.)
+├── context/          # React Context providers (Auth, Theme, etc.)
+├── hooks/            # Custom React hooks
+├── pages/            # Page-level components
+│   ├── Home/
+│   ├── Products/
+│   ├── Services/
+│   ├── Blogs/
+│   ├── News/
+│   └── Testimonials/
+├── routes/           # Application routing configuration
+├── utils/            # Helper functions and utilities
+├── App.tsx           # Root component
+└── main.tsx          # Application entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 💻 Local Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Follow these steps to get the project running locally:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd abhyudaya-ui
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open in browser:**
+   Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+## 🔗 API Integration Note
+
+Currently, the application uses a **Mock API Service** located in `src/api/apiService.ts`. This service simulates network latency and asynchronous data fetching. When you are ready to connect to a real backend, simply update the functions in `apiService.ts` to use `fetch` or `axios` calls to your actual API endpoints. No changes to the component logic are required!
+
+---
+
+*Designed and developed with passion for Abhyudaya.*

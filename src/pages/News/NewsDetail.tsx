@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { newsData } from "../../api/newsData";
+import { useState, useEffect } from "react";
+import { apiService } from "../../api/apiService";
+import type { NewsItem } from "../../api/newsData";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -7,16 +9,37 @@ import { ArrowLeft, Calendar } from "lucide-react";
 export default function NewsDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [item, setItem] = useState<NewsItem | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
-  const item = newsData.find((n) => n.id === Number(id));
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setLoading(true);
+    apiService.getNewsById(Number(id)).then(data => {
+      setItem(data);
+      setLoading(false);
+    });
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-gray-50/50">
+        <Header />
+        <div className="flex-grow flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!item) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800">Article Not Found</h2>
-          <button 
-            onClick={() => navigate("/news")} 
+          <button
+            onClick={() => navigate("/news")}
             className="mt-4 px-6 py-2 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition"
           >
             Back to Newsroom
@@ -29,7 +52,7 @@ export default function NewsDetail() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50/50">
       <Header />
-      
+
       <main className="flex-grow pt-28 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
 
@@ -43,7 +66,7 @@ export default function NewsDetail() {
           </button>
 
           <article className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 p-6 md:p-10">
-            
+
             {/* Meta */}
             <div className="flex items-center gap-4 mb-6 flex-wrap">
               <span className="bg-green-50 text-green-700 font-bold text-sm px-4 py-1.5 rounded-full shadow-sm">

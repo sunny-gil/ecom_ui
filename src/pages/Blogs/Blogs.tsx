@@ -1,20 +1,30 @@
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { blogsData } from "../../api/blogsData";
+import { apiService } from "../../api/apiService";
+import type { Blog } from "../../api/blogsData";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
 export default function Blogs() {
   const navigate = useNavigate();
-  const visibleBlogs = blogsData;
+  const [visibleBlogs, setVisibleBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    apiService.getBlogs().then(data => {
+      setVisibleBlogs(data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50/30 to-white">
       <Header />
-      
+
       <main className="flex-grow pt-28 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
-          
+
           {/* Header */}
           <div className="text-center mb-16">
             <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 px-4 py-1.5 rounded-full">
@@ -29,62 +39,68 @@ export default function Blogs() {
           </div>
 
           {/* Grid */}
-          <motion.div 
-            layout
-            className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <AnimatePresence>
-              {visibleBlogs.map((blog) => (
-                <motion.div
-                  layout
-                  key={blog.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  whileHover={{ y: -8 }}
-                  onClick={() => navigate(`/blogs/${blog.id}`)}
-                  className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 flex flex-col group"
-                >
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
-                      {blog.category}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                      <span>{blog.date}</span>
-                      <span>•</span>
-                      <span>{blog.readTime}</span>
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+            </div>
+          ) : (
+            <motion.div
+              layout
+              className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+            >
+              <AnimatePresence>
+                {visibleBlogs.map((blog) => (
+                  <motion.div
+                    layout
+                    key={blog.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    whileHover={{ y: -8 }}
+                    onClick={() => navigate(`/blogs/${blog.id}`)}
+                    className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 flex flex-col group"
+                  >
+                    {/* Image */}
+                    <div className="relative h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
+                      <img
+                        src={blog.image}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <span className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                        {blog.category}
+                      </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
-                      {blog.title}
-                    </h3>
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                        <span>{blog.date}</span>
+                        <span>•</span>
+                        <span>{blog.readTime}</span>
+                      </div>
 
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                      {blog.shortDesc}
-                    </p>
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
+                        {blog.title}
+                      </h3>
 
-                    <span className="mt-auto flex items-center text-green-600 font-bold text-sm group-hover:text-green-800 transition">
-                      Read Full Article 
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                        {blog.shortDesc}
+                      </p>
+
+                      <span className="mt-auto flex items-center text-green-600 font-bold text-sm group-hover:text-green-800 transition">
+                        Read Full Article
+                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          )}
 
         </div>
       </main>
