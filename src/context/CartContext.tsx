@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import type { Product } from "../api/productsData";
 
 export type CartItem = Product & { quantity: number };
@@ -41,7 +42,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
       return [...prev, { ...product, quantity }];
     });
-    
+
     // Optional: Could trigger a toast notification here
     alert(`${product.name} added to cart!`);
   };
