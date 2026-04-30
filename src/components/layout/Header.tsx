@@ -111,7 +111,10 @@ const Header = () => {
           <div className="relative" ref={profileRef}>
             <motion.div
               whileHover={{ scale: 1.1 }}
-              onClick={() => setProfileOpen(!profileOpen)}
+              onClick={() => {
+                if (user) setProfileOpen(!profileOpen);
+                else navigate("/login");
+              }}
               className="w-10 h-10 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center cursor-pointer shadow"
             >
               <User size={18} />
@@ -127,13 +130,22 @@ const Header = () => {
                   className="absolute right-0 mt-3 w-52 bg-white rounded-lg shadow-lg border overflow-hidden z-50"
                 >
                   <ul>
-                    <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer">
+                    <li 
+                      onClick={() => { setProfileOpen(false); navigate("/notifications"); }}
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    >
                       <Bell size={16} /> Notifications
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer">
+                    <li 
+                      onClick={() => { setProfileOpen(false); navigate("/cart"); }}
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    >
                       <ShoppingCart size={16} /> Cart
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer">
+                    <li 
+                      onClick={() => { setProfileOpen(false); navigate("/profile"); }}
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    >
                       <User size={16} /> Profile
                     </li>
                     <li

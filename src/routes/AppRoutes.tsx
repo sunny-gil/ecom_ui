@@ -14,7 +14,10 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import AuthSuccess from "../pages/Auth/AuthSuccess";
-
+import { ProtectedRoute } from "../components/common/ProtectedRoute";
+import Profile from "../pages/Profile/Profile";
+import Cart from "../pages/Cart/Cart";
+import Notifications from "../pages/Notifications/Notifications";
 
 export default function AppRoutes() {
   return (
@@ -35,6 +38,11 @@ export default function AppRoutes() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/auth-success" element={<AuthSuccess />} />
+        
+        {/* Protected Routes */}
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );
