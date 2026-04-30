@@ -57,9 +57,14 @@ const Services = ({ isPreview = false }: Props) => {
               key={service.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
+              }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className={`bg-white/80 backdrop-blur-md rounded-3xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group`}
+              className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-zinc-800 transition-all duration-500 flex flex-col group cursor-pointer`}
             >
               {/* Image Section */}
               <div className="relative h-60 overflow-hidden bg-gray-100">

@@ -8,9 +8,19 @@ const Header = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+
+  // Scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
 
 
@@ -55,8 +65,14 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="flex items-center justify-between px-6 py-1">
+    <header 
+      className={`sticky top-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? "py-2 glass shadow-lg" 
+          : "py-4 bg-transparent shadow-none"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
 
         {/* Logo */}
         <motion.h1

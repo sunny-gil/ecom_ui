@@ -393,9 +393,32 @@ const Home = () => {
         </div>
       </section>
 
-      <Products isPreview={true} categoryLimit="true" />
-      <Services isPreview={true} />
-      <Testimonials isPreview={true} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <Products isPreview={true} categoryLimit="true" />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <Services isPreview={true} />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <Testimonials isPreview={true} />
+      </motion.div>
       <Footer />
     </>
   );
