@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User, Bell, ShoppingCart } from "lucide-react";
+import { Menu, X, User, Bell, ShoppingCart, Package } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
 
@@ -141,6 +141,12 @@ const Header = () => {
                       className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
                     >
                       <ShoppingCart size={16} /> Cart
+                    </li>
+                    <li 
+                      onClick={() => { setProfileOpen(false); navigate("/orders"); }}
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    >
+                      <Package size={16} /> My Orders
                     </li>
                     <li 
                       onClick={() => { setProfileOpen(false); navigate("/profile"); }}

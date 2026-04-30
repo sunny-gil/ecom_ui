@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, CreditCard, Wallet, Truck, CheckCircle, Package } from "lucide-react";
+import { ArrowLeft, CreditCard, Truck, CheckCircle, Package } from "lucide-react";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import { useCart } from "../../context/CartContext";
+import { useOrders } from "../../context/OrderContext";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { cart, subtotal, clearCart } = useCart();
+  const { addOrder } = useOrders();
+  const [selectedUpiApp, setSelectedUpiApp] = useState<string | null>(null);
   
   const [activeStep, setActiveStep] = useState(1);
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -18,11 +21,11 @@ export default function Checkout() {
 
   const handlePlaceOrder = () => {
     setIsProcessing(true);
-    // Simulate API call and payment processing
     setTimeout(() => {
+      addOrder(cart, total);
       clearCart();
       setIsProcessing(false);
-      navigate("/auth-success", { state: { message: "Order Placed Successfully! Your premium items are on the way." } });
+      navigate("/orders");
     }, 2000);
   };
 
@@ -152,16 +155,40 @@ export default function Checkout() {
                       <div className={`border rounded-xl transition ${paymentMethod === 'upi' ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-green-300'}`}>
                         <label className="flex items-center p-4 cursor-pointer">
                           <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-5 h-5 text-green-600" />
-                          <Wallet className="ml-4 mr-3 text-gray-500" />
-                          <span className="font-medium text-gray-900">UPI / Wallets</span>
+                          <div className="ml-4 flex items-center gap-3">
+                            {/* BHIM UPI official logo */}
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BHIM_UPI_Logo.svg/512px-BHIM_UPI_Logo.svg.png" alt="UPI" className="h-6 w-auto" />
+                            <span className="font-medium text-gray-900">UPI / Wallets</span>
+                          </div>
                         </label>
                         {paymentMethod === 'upi' && (
                           <div className="p-4 pt-0 border-t border-green-100">
-                            <div className="mt-4 flex gap-4">
-                              <input type="text" placeholder="Enter UPI ID (e.g., john@okhdfcbank)" className="flex-grow px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none" />
-                              <button className="px-6 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition">Verify</button>
+                            {/* UPI App icons */}
+                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-3">Pay with</p>
+                            <div className="grid grid-cols-4 gap-3 mb-5">
+                              {[
+                                { name: 'GPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png', color: 'hover:border-blue-400' },
+                                { name: 'PhonePe', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.png/512px-PhonePe_Logo.png', color: 'hover:border-purple-400' },
+                                { name: 'Paytm', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/512px-Paytm_logo.png', color: 'hover:border-sky-400' },
+                                { name: 'BHIM', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BHIM_UPI_Logo.svg/512px-BHIM_UPI_Logo.svg.png', color: 'hover:border-orange-400' },
+                              ].map(app => (
+                                <button
+                                  key={app.name}
+                                  type="button"
+                                  onClick={() => setSelectedUpiApp(app.name)}
+                                  className={`flex flex-col items-center gap-2 p-3 rounded-xl border-2 transition ${selectedUpiApp === app.name ? 'border-green-500 bg-green-50 shadow-sm' : `border-gray-200 bg-white ${app.color}`}`}
+                                >
+                                  <img src={app.logo} alt={app.name} className="h-8 w-auto object-contain" />
+                                  <span className="text-xs font-semibold text-gray-700">{app.name}</span>
+                                </button>
+                              ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">A payment request will be sent to your UPI app.</p>
+                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Or enter UPI ID</p>
+                            <div className="flex gap-3">
+                              <input type="text" placeholder="e.g., john@okhdfcbank" className="flex-grow px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none text-sm" />
+                              <button className="px-5 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition text-sm">Verify</button>
+                            </div>
+                            <p className="text-xs text-gray-400 mt-2">A payment request will be sent to your UPI app after clicking Verify.</p>
                           </div>
                         )}
                       </div>
