@@ -140,7 +140,7 @@ const ProductDetail = () => {
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                    <button 
+                    <button
                       onClick={() => product && addToCart(product)}
                       className="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                     >

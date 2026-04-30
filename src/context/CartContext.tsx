@@ -7,8 +7,8 @@ export type CartItem = Product & { quantity: number };
 type CartContextType = {
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, delta: number) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, delta: number) => void;
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
@@ -47,11 +47,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     alert(`${product.name} added to cart!`);
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const updateQuantity = (id: number, delta: number) => {
+  const updateQuantity = (id: string, delta: number) => {
     setCart((prev) =>
       prev.map((item) => {
         if (item.id === id) {
