@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { apiService } from "../../api/apiService";
 import type { Product } from "../../api/productsData";
+import { CardSkeleton } from "../../components/common/Skeleton";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
@@ -58,8 +59,8 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+          <div className="py-20">
+            <CardSkeleton count={8} />
           </div>
         ) : (
           <>

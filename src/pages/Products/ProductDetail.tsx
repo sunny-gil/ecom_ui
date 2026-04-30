@@ -5,6 +5,7 @@ import { apiService } from "../../api/apiService";
 import type { Product } from "../../api/productsData";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { DetailSkeleton } from "../../components/common/Skeleton";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,8 +39,8 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <div className="flex-grow flex items-center justify-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+        <div className="flex-grow">
+          <DetailSkeleton />
         </div>
         <Footer />
       </div>

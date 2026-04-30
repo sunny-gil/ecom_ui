@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { apiService } from "../../api/apiService";
+import { CardSkeleton } from "../../components/common/Skeleton";
 type Props = {
   isPreview?: boolean;
 };
@@ -44,8 +45,8 @@ const Services = ({ isPreview = false }: Props) => {
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+          <div className="py-20 w-full">
+            <CardSkeleton count={6} />
           </div>
         ) : (
           <>

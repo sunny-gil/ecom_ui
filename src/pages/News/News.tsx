@@ -5,6 +5,7 @@ import { apiService } from "../../api/apiService";
 import type { NewsItem } from "../../api/newsData";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { CardSkeleton } from "../../components/common/Skeleton";
 
 export default function News() {
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ export default function News() {
 
           {/* Grid */}
           {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+            <div className="py-20 w-full">
+              <CardSkeleton count={6} />
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

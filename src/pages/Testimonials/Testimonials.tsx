@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import { apiService } from "../../api/apiService";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { CardSkeleton } from "../../components/common/Skeleton";
 
 type Props = {
   isPreview?: boolean;
@@ -54,8 +55,8 @@ export default function Testimonials({ isPreview = false }: Props) {
         </p>
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-600"></div>
+          <div className="py-20 w-full">
+            <CardSkeleton count={3} />
           </div>
         ) : (
           <div
