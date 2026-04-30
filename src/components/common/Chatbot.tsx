@@ -4,7 +4,7 @@ import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 
 type Msg = { from: "user" | "bot"; text: string };
 
-// 🔥 Abhyudaya FAQ DATA
+// 🔥 Ecom FAQ DATA
 const faq = [
   {
     keywords: ["coffee", "brew", "caffeine", "arabica"],
@@ -36,7 +36,7 @@ const faq = [
   },
   {
     keywords: ["hi", "hello", "hey", "namaste"],
-    answer: "Hello! Welcome to Abhyudaya. How can I assist you with your premium lifestyle needs today?",
+    answer: "Hello! Welcome to Ecom. How can I assist you with your premium lifestyle needs today?",
   }
 ];
 
@@ -50,18 +50,18 @@ const Chatbot = () => {
 
   // Initialize greeting
   useEffect(() => {
-    const saved = localStorage.getItem("abhyudaya_chat");
+    const saved = localStorage.getItem("ecom_chat");
     if (saved) {
       setMessages(JSON.parse(saved));
     } else {
-      setMessages([{ from: "bot", text: "Welcome to Abhyudaya ✨ How can I elevate your experience today?" }]);
+      setMessages([{ from: "bot", text: "Welcome to Ecom ✨ How can I elevate your experience today?" }]);
     }
   }, []);
 
   // Save to local storage
   useEffect(() => {
     if (messages.length > 0) {
-      localStorage.setItem("abhyudaya_chat", JSON.stringify(messages));
+      localStorage.setItem("ecom_chat", JSON.stringify(messages));
     }
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -151,7 +151,7 @@ const Chatbot = () => {
                   <Bot size={20} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm tracking-wide">Abhyudaya Virtual Assistant</h3>
+                  <h3 className="font-bold text-sm tracking-wide">Ecom Virtual Assistant</h3>
                   <p className="text-xs text-green-100 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" /> Online
                   </p>
