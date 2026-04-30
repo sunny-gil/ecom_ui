@@ -8,7 +8,7 @@ import skinOils from "../assets/product3.jpg";
 import waterElectrolytes from "../assets/hero-water.png";
 
 export interface Blog {
-  id: number;
+  id: string;
   title: string;
   category: string;
   shortDesc: string;
@@ -21,7 +21,7 @@ export interface Blog {
 export const blogsData: Blog[] = [
   // Coffee Culture
   {
-    id: 1,
+    id: "1",
     title: "The Perfect Pour-Over Guide",
     category: "Coffee Culture",
     shortDesc: "Master the art of brewing at home.",
@@ -31,7 +31,7 @@ export const blogsData: Blog[] = [
     readTime: "5 min read",
   },
   {
-    id: 2,
+    id: "2",
     title: "Health Benefits of Dark Roast",
     category: "Coffee Culture",
     shortDesc: "More than just a caffeine boost.",
@@ -41,7 +41,7 @@ export const blogsData: Blog[] = [
     readTime: "4 min read",
   },
   {
-    id: 3,
+    id: "3",
     title: "Why Single Origin Beans Matter",
     category: "Coffee Culture",
     shortDesc: "Traceability and distinct flavor profiles.",
@@ -53,7 +53,7 @@ export const blogsData: Blog[] = [
 
   // Organic Food
   {
-    id: 4,
+    id: "4",
     title: "5 Quick Superfood Salad Recipes",
     category: "Organic Food",
     shortDesc: "Wholesome, delicious, and easy to prep.",
@@ -63,7 +63,7 @@ export const blogsData: Blog[] = [
     readTime: "3 min read",
   },
   {
-    id: 5,
+    id: "5",
     title: "Farm-to-Table: Why Organic?",
     category: "Organic Food",
     shortDesc: "The truth about clean eating.",
@@ -75,7 +75,7 @@ export const blogsData: Blog[] = [
 
   // Luxury Beauty
   {
-    id: 6,
+    id: "6",
     title: "Build a 10-Min Skincare Routine",
     category: "Luxury Beauty",
     shortDesc: "Simplicity meets ultimate hydration.",
@@ -85,7 +85,7 @@ export const blogsData: Blog[] = [
     readTime: "4 min read",
   },
   {
-    id: 7,
+    id: "7",
     title: "Botanical Oils for Glowing Skin",
     category: "Luxury Beauty",
     shortDesc: "Harnessing natural radiance.",
@@ -97,7 +97,7 @@ export const blogsData: Blog[] = [
 
   // Pure Hydration
   {
-    id: 8,
+    id: "8",
     title: "The Power of Post-Workout Electrolytes",
     category: "Pure Hydration",
     shortDesc: "Rapid recovery made simple.",

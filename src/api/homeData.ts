@@ -4,7 +4,7 @@ import heroCosmetics from "../assets/hero-cosmetics.png";
 import heroWater from "../assets/hero-water.png";
 
 export interface SlideData {
-  id: number;
+  id: string;
   badge: string;
   title: string;
   highlight: string;
@@ -25,7 +25,7 @@ export interface SlideData {
 
 export const slides: SlideData[] = [
   {
-    id: 0,
+    id: "0",
     badge: "✦ Premium Coffee",
     title: "Craft Your Perfect ",
     highlight: "Coffee Experience",
@@ -52,7 +52,7 @@ export const slides: SlideData[] = [
     ],
   },
   {
-    id: 1,
+    id: "1",
     badge: "✦ Organic Food",
     title: "Fresh & Organic ",
     highlight: "Food Delivered",
@@ -79,7 +79,7 @@ export const slides: SlideData[] = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     badge: "✦ Luxury Cosmetics",
     title: "Unveil Your ",
     highlight: "Natural Glow",
@@ -106,7 +106,7 @@ export const slides: SlideData[] = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     badge: "✦ Pure Hydration",
     title: "Crystal Pure ",
     highlight: "Mineral Water",

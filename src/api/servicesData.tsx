@@ -16,7 +16,7 @@ import img2 from "../assets/2.jpg";
 
 export const servicesList = [
   {
-    id: 1,
+    id: "1",
     icon: <Utensils size={32} />,
     title: "Personalized Nutrition Planning",
     shortDesc: "Custom diet plans from expert nutritionists.",
@@ -26,7 +26,7 @@ export const servicesList = [
     gradient: "from-green-500/10 to-emerald-500/10",
   },
   {
-    id: 2,
+    id: "2",
     icon: <Sparkles size={32} />,
     title: "Skin & Beauty Consultation",
     shortDesc: "Find the perfect skincare routine.",
@@ -36,7 +36,7 @@ export const servicesList = [
     gradient: "from-pink-500/10 to-rose-500/10",
   },
   {
-    id: 3,
+    id: "3",
     icon: <Coffee size={32} />,
     title: "Master Barista Workshops",
     shortDesc: "Learn the art of brewing the perfect coffee.",
@@ -46,7 +46,7 @@ export const servicesList = [
     gradient: "from-amber-500/10 to-orange-500/10",
   },
   {
-    id: 4,
+    id: "4",
     icon: <Droplet size={32} />,
     title: "Hydration & Detox Coaching",
     shortDesc: "Optimize your wellness and hydration.",
@@ -56,7 +56,7 @@ export const servicesList = [
     gradient: "from-blue-500/10 to-cyan-500/10",
   },
   {
-    id: 5,
+    id: "5",
     icon: <Gift size={32} />,
     title: "Bespoke Gift Hamper Styling",
     shortDesc: "Tailor-made gifts for any occasion.",
@@ -66,7 +66,7 @@ export const servicesList = [
     gradient: "from-purple-500/10 to-violet-500/10",
   },
   {
-    id: 6,
+    id: "6",
     icon: <Truck size={32} />,
     title: "Eco-Friendly Express Delivery",
     shortDesc: "Zero-emission cold-chain delivery.",

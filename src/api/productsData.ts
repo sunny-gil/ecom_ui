@@ -25,7 +25,7 @@ export interface Product {
 export const productsData: Product[] = [
   // ─── Premium Coffee ───
   {
-    id: 1,
+    id: "1",
     name: "Artisan Dark Roast",
     category: "Premium Coffee",
     shortDesc: "Rich, bold, and perfectly roasted.",
@@ -40,7 +40,7 @@ export const productsData: Product[] = [
     reviews: 1245,
   },
   {
-    id: 2,
+    id: "2",
     name: "Ethiopian Yirgacheffe",
     category: "Premium Coffee",
     shortDesc: "Light roast with floral notes.",
@@ -55,7 +55,7 @@ export const productsData: Product[] = [
     reviews: 890,
   },
   {
-    id: 3,
+    id: "3",
     name: "Classic Espresso Blend",
     category: "Premium Coffee",
     shortDesc: "Smooth and balanced for espresso.",
@@ -70,7 +70,7 @@ export const productsData: Product[] = [
     reviews: 2100,
   },
   {
-    id: 4,
+    id: "4",
     name: "Cold Brew Reserve",
     category: "Premium Coffee",
     shortDesc: "Specially roasted for cold brewing.",
@@ -85,7 +85,7 @@ export const productsData: Product[] = [
     reviews: 560,
   },
   {
-    id: 5,
+    id: "5",
     name: "Decaf Colombian",
     category: "Premium Coffee",
     shortDesc: "All the flavor, zero the jitters.",
@@ -102,7 +102,7 @@ export const productsData: Product[] = [
 
   // ─── Organic Food ───
   {
-    id: 6,
+    id: "6",
     name: "Farm Fresh Organic Veggie Box",
     category: "Organic Food",
     shortDesc: "Seasonal mix of organic vegetables.",
@@ -117,7 +117,7 @@ export const productsData: Product[] = [
     reviews: 3200,
   },
   {
-    id: 7,
+    id: "7",
     name: "Organic Quinoa Superpack",
     category: "Organic Food",
     shortDesc: "High-protein ancient grain.",
@@ -132,7 +132,7 @@ export const productsData: Product[] = [
     reviews: 1540,
   },
   {
-    id: 8,
+    id: "8",
     name: "Wildflower Raw Honey",
     category: "Organic Food",
     shortDesc: "Unprocessed, pure raw honey.",
@@ -147,7 +147,7 @@ export const productsData: Product[] = [
     reviews: 2800,
   },
   {
-    id: 9,
+    id: "9",
     name: "Organic Extra Virgin Olive Oil",
     category: "Organic Food",
     shortDesc: "Cold-pressed premium olive oil.",
@@ -162,7 +162,7 @@ export const productsData: Product[] = [
     reviews: 1120,
   },
   {
-    id: 10,
+    id: "10",
     name: "Sprouted Multi-Grain Bread",
     category: "Organic Food",
     shortDesc: "Nutritious, easily digestible bread.",
@@ -179,7 +179,7 @@ export const productsData: Product[] = [
 
   // ─── Luxury Cosmetics ───
   {
-    id: 11,
+    id: "11",
     name: "Radiance Vitamin C Serum",
     category: "Luxury Cosmetics",
     shortDesc: "Brighten and even out skin tone.",
@@ -194,7 +194,7 @@ export const productsData: Product[] = [
     reviews: 4100,
   },
   {
-    id: 12,
+    id: "12",
     name: "Velvet Matte Lipstick",
     category: "Luxury Cosmetics",
     shortDesc: "Long-lasting, intense color.",
@@ -209,7 +209,7 @@ export const productsData: Product[] = [
     reviews: 1950,
   },
   {
-    id: 13,
+    id: "13",
     name: "Botanical Night Cream",
     category: "Luxury Cosmetics",
     shortDesc: "Intense overnight hydration.",
@@ -224,7 +224,7 @@ export const productsData: Product[] = [
     reviews: 850,
   },
   {
-    id: 14,
+    id: "14",
     name: "Silk Finish Foundation",
     category: "Luxury Cosmetics",
     shortDesc: "Flawless, breathable coverage.",
@@ -239,7 +239,7 @@ export const productsData: Product[] = [
     reviews: 1200,
   },
   {
-    id: 15,
+    id: "15",
     name: "Rosewater Hydrating Mist",
     category: "Luxury Cosmetics",
     shortDesc: "Instant refreshment and toning.",
@@ -256,7 +256,7 @@ export const productsData: Product[] = [
 
   // ─── Pure Hydration ───
   {
-    id: 16,
+    id: "16",
     name: "Alkaline Mountain Water",
     category: "Pure Hydration",
     shortDesc: "Perfectly pH balanced hydration.",
@@ -271,7 +271,7 @@ export const productsData: Product[] = [
     reviews: 5200,
   },
   {
-    id: 17,
+    id: "17",
     name: "Sparkling Mineral Water",
     category: "Pure Hydration",
     shortDesc: "Crisp and refreshing bubbles.",
@@ -286,7 +286,7 @@ export const productsData: Product[] = [
     reviews: 3400,
   },
   {
-    id: 18,
+    id: "18",
     name: "Electrolyte Recovery Water",
     category: "Pure Hydration",
     shortDesc: "Enhanced for rapid rehydration.",
@@ -301,7 +301,7 @@ export const productsData: Product[] = [
     reviews: 2100,
   },
   {
-    id: 19,
+    id: "19",
     name: "Artesian Spring Water",
     category: "Pure Hydration",
     shortDesc: "Untouched, pure artesian water.",
@@ -316,7 +316,7 @@ export const productsData: Product[] = [
     reviews: 1890,
   },
   {
-    id: 20,
+    id: "20",
     name: "Vitamin Enhanced Water",
     category: "Pure Hydration",
     shortDesc: "Hydration with a boost of vitamins.",
