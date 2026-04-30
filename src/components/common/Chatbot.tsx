@@ -142,7 +142,7 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[380px] h-[100dvh] sm:h-[600px] bg-white sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[999] border border-gray-100"
+            className="fixed bottom-24 right-4 sm:bottom-6 sm:right-6 w-[calc(100%-32px)] max-w-[380px] h-[550px] max-h-[75vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-[999] border border-gray-100"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white p-4 flex justify-between items-center shadow-md">
@@ -151,7 +151,7 @@ const Chatbot = () => {
                   <Bot size={20} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm tracking-wide">Abhyudaya Concierge</h3>
+                  <h3 className="font-bold text-sm tracking-wide">Abhyudaya Virtual Assistant</h3>
                   <p className="text-xs text-green-100 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" /> Online
                   </p>
