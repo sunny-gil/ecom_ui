@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/layout/Header";
@@ -15,7 +14,7 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
-      
+
       <main className="flex-grow py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
@@ -33,7 +32,7 @@ export default function Cart() {
             </div>
           ) : (
             <div className="flex flex-col lg:flex-row gap-8">
-              
+
               {/* Cart Items */}
               <div className="flex-grow space-y-4">
                 {cartItems.map(item => (
@@ -41,7 +40,7 @@ export default function Cart() {
                     <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0">
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-                    
+
                     <div className="flex-grow text-center sm:text-left">
                       <p className="text-sm font-semibold tracking-wide text-green-600 mb-1 uppercase">{item.category}</p>
                       <h3 className="text-lg font-bold text-gray-900">{item.name}</h3>
@@ -72,7 +71,7 @@ export default function Cart() {
               <div className="w-full lg:w-96 shrink-0">
                 <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 sticky top-24">
                   <h3 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
-                  
+
                   <div className="space-y-4 mb-6 text-gray-600">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
@@ -95,7 +94,7 @@ export default function Cart() {
                     </div>
                   </div>
 
-                  <button 
+                  <button
                     onClick={() => navigate("/checkout")}
                     className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 shadow-md shadow-green-200 transition flex justify-center items-center gap-2"
                   >
