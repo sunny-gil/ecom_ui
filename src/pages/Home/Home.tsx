@@ -262,7 +262,7 @@ const Home = () => {
 
               {/* Typewriter */}
               <motion.div variants={childFadeUp} className="hero-slider__typewriter">
-                <span className="hero-slider__typewriter-text">{useTypewriter(slide.typewriterText, 32, 500)}</span>
+                <span className="hero-slider__typewriter-text">{typedText}</span>
                 <span className="hero-slider__typewriter-cursor">|</span>
               </motion.div>
 
