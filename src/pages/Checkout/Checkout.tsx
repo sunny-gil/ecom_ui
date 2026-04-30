@@ -156,16 +156,15 @@ export default function Checkout() {
                         <label className="flex items-center p-4 cursor-pointer">
                           <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} className="w-5 h-5 text-green-600" />
                           <div className="ml-4 flex items-center gap-3">
-                            {/* BHIM UPI official logo */}
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BHIM_UPI_Logo.svg/512px-BHIM_UPI_Logo.svg.png" alt="UPI" className="h-6 w-auto" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BHIM_UPI_Logo.svg/512px-BHIM_UPI_Logo.svg.png" alt="UPI" className="h-5 sm:h-6 w-auto" />
                             <span className="font-medium text-gray-900">UPI / Wallets</span>
                           </div>
                         </label>
                         {paymentMethod === 'upi' && (
-                          <div className="p-4 pt-0 border-t border-green-100">
-                            {/* UPI App icons */}
+                          <div className="px-4 pb-5 pt-1 border-t border-green-100">
+                            {/* UPI App Selector */}
                             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mt-4 mb-3">Pay with</p>
-                            <div className="grid grid-cols-4 gap-3 mb-5">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
                               {[
                                 { name: 'GPay', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png', color: 'hover:border-blue-400' },
                                 { name: 'PhonePe', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.png/512px-PhonePe_Logo.png', color: 'hover:border-purple-400' },
@@ -176,17 +175,24 @@ export default function Checkout() {
                                   key={app.name}
                                   type="button"
                                   onClick={() => setSelectedUpiApp(app.name)}
-                                  className={`flex flex-col items-center gap-2 p-3 rounded-xl border-2 transition ${selectedUpiApp === app.name ? 'border-green-500 bg-green-50 shadow-sm' : `border-gray-200 bg-white ${app.color}`}`}
+                                  className={`flex items-center sm:flex-col gap-3 sm:gap-2 p-3 rounded-xl border-2 transition w-full ${selectedUpiApp === app.name ? 'border-green-500 bg-green-50 shadow-sm' : `border-gray-200 bg-white ${app.color}`}`}
                                 >
-                                  <img src={app.logo} alt={app.name} className="h-8 w-auto object-contain" />
-                                  <span className="text-xs font-semibold text-gray-700">{app.name}</span>
+                                  <img src={app.logo} alt={app.name} className="h-7 sm:h-8 w-auto object-contain shrink-0" />
+                                  <span className="text-xs sm:text-sm font-semibold text-gray-700">{app.name}</span>
                                 </button>
                               ))}
                             </div>
+                            {/* UPI ID Input */}
                             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Or enter UPI ID</p>
-                            <div className="flex gap-3">
-                              <input type="text" placeholder="e.g., john@okhdfcbank" className="flex-grow px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none text-sm" />
-                              <button className="px-5 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition text-sm">Verify</button>
+                            <div className="flex flex-col sm:flex-row gap-3">
+                              <input
+                                type="text"
+                                placeholder="e.g., john@okhdfcbank"
+                                className="flex-grow px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition outline-none text-sm"
+                              />
+                              <button className="sm:w-auto w-full px-5 py-3 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition text-sm">
+                                Verify
+                              </button>
                             </div>
                             <p className="text-xs text-gray-400 mt-2">A payment request will be sent to your UPI app after clicking Verify.</p>
                           </div>

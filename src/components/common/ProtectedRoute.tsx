@@ -7,7 +7,12 @@ type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  // Wait until localStorage has been checked before deciding to redirect
+  if (isLoading) {
+    return null;
+  }
 
   if (!user) {
     // Redirect to login if there is no user
