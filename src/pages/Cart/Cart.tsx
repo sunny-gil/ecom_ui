@@ -1,46 +1,14 @@
 import { useState } from "react";
 import { Trash2, ShoppingBag, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { useCart } from "../../context/CartContext";
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Organic Honey Extract",
-      category: "Wellness",
-      price: 45.0,
-      quantity: 1,
-      image: "https://images.unsplash.com/photo-1587049352847-81a56d773c1c?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      id: 2,
-      name: "Premium Arabica Coffee",
-      category: "Beverages",
-      price: 28.5,
-      quantity: 2,
-      image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?q=80&w=600&auto=format&fit=crop"
-    }
-  ]);
+  const navigate = useNavigate();
+  const { cart: cartItems, updateQuantity, removeFromCart: removeItem, subtotal } = useCart();
 
-  const updateQuantity = (id: number, delta: number) => {
-    setCartItems(items => 
-      items.map(item => {
-        if (item.id === id) {
-          const newQ = Math.max(1, item.quantity + delta);
-          return { ...item, quantity: newQ };
-        }
-        return item;
-      })
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const tax = subtotal * 0.05; // 5% tax
   const total = subtotal + tax;
 
@@ -127,7 +95,10 @@ export default function Cart() {
                     </div>
                   </div>
 
-                  <button className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 shadow-md shadow-green-200 transition flex justify-center items-center gap-2">
+                  <button 
+                    onClick={() => navigate("/checkout")}
+                    className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 shadow-md shadow-green-200 transition flex justify-center items-center gap-2"
+                  >
                     Proceed to Checkout <ArrowRight size={20} />
                   </button>
                 </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { apiService } from "../../api/apiService";
 import type { Product } from "../../api/productsData";
 import { CardSkeleton } from "../../components/common/Skeleton";
+import { useCart } from "../../context/CartContext";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 
@@ -14,6 +15,7 @@ type Props = {
 
 const Products = ({ isPreview = false, categoryLimit }: Props) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [productsData, setProductsData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -131,15 +133,26 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                           </div>
                         </div>
 
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(`/products/${product.id}`);
-                          }}
-                          className="w-full py-2 bg-green-50 text-green-700 font-semibold rounded-lg group-hover:bg-green-600 group-hover:text-white transition-colors"
-                        >
-                          View Details
-                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/products/${product.id}`);
+                            }}
+                            className="flex-1 py-2 bg-green-50 text-green-700 font-semibold rounded-lg hover:bg-green-100 transition-colors"
+                          >
+                            Details
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart(product);
+                            }}
+                            className="flex-1 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </motion.div>

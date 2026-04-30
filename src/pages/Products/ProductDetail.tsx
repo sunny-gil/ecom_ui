@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { apiService } from "../../api/apiService";
 import type { Product } from "../../api/productsData";
+import { useCart } from "../../context/CartContext";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import { DetailSkeleton } from "../../components/common/Skeleton";
@@ -10,6 +11,7 @@ import { DetailSkeleton } from "../../components/common/Skeleton";
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [activeTab, setActiveTab] = useState<"description" | "usage" | "precautions" | "storage">("description");
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -138,7 +140,10 @@ const ProductDetail = () => {
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                    <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                    <button 
+                      onClick={() => product && addToCart(product)}
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                    >
                       Add to Cart
                     </button>
                     <button

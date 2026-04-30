@@ -17,6 +17,7 @@ import AuthSuccess from "../pages/Auth/AuthSuccess";
 import { ProtectedRoute } from "../components/common/ProtectedRoute";
 import Profile from "../pages/Profile/Profile";
 import Cart from "../pages/Cart/Cart";
+import Checkout from "../pages/Checkout/Checkout";
 import Notifications from "../pages/Notifications/Notifications";
 
 export default function AppRoutes() {
@@ -42,6 +43,7 @@ export default function AppRoutes() {
         {/* Protected Routes */}
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
