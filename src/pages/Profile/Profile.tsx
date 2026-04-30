@@ -2,36 +2,64 @@ import { useState, useEffect, useRef } from "react";
 import { Camera, Save, Edit3, User, Briefcase, Phone, GraduationCap } from "lucide-react";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { useAuth } from "../../context/AuthContext";
+import { apiService } from "../../api/apiService";
+import Swal from "sweetalert2";
 
 export default function Profile() {
+  const { user, login } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   
   const [profileData, setProfileData] = useState({
-    name: "John Doe",
-    email: "john@example.com", // Read-only usually
-    mobile: "+1 234 567 8900",
-    qualification: "MBA in Business Administration",
-    designation: "Premium Member",
-    avatar: "https://ui-avatars.com/api/?name=John+Doe&background=16a34a&color=fff&size=200",
+    name: "",
+    email: "",
+    mobile: "",
+    qualification: "",
+    designation: "",
+    avatar: "",
   });
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Load from local storage on mount
   useEffect(() => {
-    const saved = localStorage.getItem("user_profile_data");
-    if (saved) {
-      setProfileData(JSON.parse(saved));
+    if (user) {
+      setProfileData({
+        name: user.name || "",
+        email: user.email || "",
+        mobile: user.mobile || "",
+        qualification: user.qualification || "",
+        designation: user.designation || "",
+        avatar: user.avatar || `https://ui-avatars.com/api/?name=${user.name || 'User'}&background=16a34a&color=fff&size=200`,
+      });
     }
-  }, []);
+  }, [user]);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProfileData({ ...profileData, [e.target.name]: e.target.value });
   };
 
-  const handleSave = () => {
-    localStorage.setItem("user_profile_data", JSON.stringify(profileData));
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      const res = await apiService.updateProfile(profileData);
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Profile Updated",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        // Refresh profile in context
+        const token = localStorage.getItem("token");
+        if (token) login(token); 
+        setIsEditing(false);
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: "Please try again later.",
+      });
+    }
   };
 
   const handleImageClick = () => {

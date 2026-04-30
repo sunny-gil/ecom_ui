@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { apiService } from "../api/apiService";
 
 const AuthContext = createContext<any>(null);
 
@@ -6,17 +7,32 @@ export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchProfile = async () => {
+    try {
+      const res = await apiService.getProfile();
+      if (res.success) {
+        setUser(res.user);
+      }
+    } catch (err) {
+      console.error("Failed to fetch profile", err);
+      logout();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setUser({ token });
+      fetchProfile();
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
   const login = (token: string) => {
     localStorage.setItem("token", token);
-    setUser({ token });
+    fetchProfile();
   };
 
   const logout = () => {

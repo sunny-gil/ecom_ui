@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { registerUser } from "../../api/auth";
+import { apiService } from "../../api/apiService";
 import Swal from "sweetalert2";
 
 export default function Register() {
@@ -28,7 +28,7 @@ export default function Register() {
     try {
       setLoading(true);
 
-      const res = await registerUser(form);
+      const res = await apiService.register(form);
 
       console.log("API RESPONSE:", res);
 
@@ -39,7 +39,6 @@ export default function Register() {
           title: "Registration Successful",
           text: res?.message || "Account created successfully",
         });
-
 
         navigate("/login");
       }
@@ -127,22 +126,21 @@ export default function Register() {
         </div>
 
         <div className="space-y-3">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02, translateY: -2 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => {
               window.location.href = `${import.meta.env.VITE_API_URL}/v1/auth/google`;
             }}
-            className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition"
+            className="w-full py-4 border-2 border-gray-100 rounded-2xl flex items-center justify-center gap-3 hover:bg-gray-50 hover:border-gray-200 transition-all duration-300 shadow-sm"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"
               className="w-5 h-5"
+              alt="Google"
             />
-            Continue with Google
-          </button>
-
-          {/* <button className="w-full py-3 border rounded-xl flex items-center justify-center gap-3 hover:bg-gray-50 transition">
-            📱 Continue with Phone
-          </button> */}
+            <span className="font-bold text-gray-700">Continue with Google</span>
+          </motion.button>
         </div>
 
         <p className="text-sm text-center text-gray-500 mt-6">
