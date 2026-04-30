@@ -16,7 +16,7 @@ export default function BlogDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    apiService.getBlogById(Number(id)).then(data => {
+    apiService.getBlogById(id!).then(data => {
       setBlog(data);
       setLoading(false);
     });

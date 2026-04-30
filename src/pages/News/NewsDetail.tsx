@@ -16,7 +16,7 @@ export default function NewsDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    apiService.getNewsById(Number(id)).then(data => {
+    apiService.getNewsById(id!).then(data => {
       setItem(data);
       setLoading(false);
     });

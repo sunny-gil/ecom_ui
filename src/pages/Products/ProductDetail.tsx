@@ -22,7 +22,7 @@ const ProductDetail = () => {
     setLoading(true);
 
     Promise.all([
-      apiService.getProductById(Number(id)),
+      apiService.getProductById(id!),
       apiService.getProducts()
     ]).then(([productData, allProducts]) => {
       setProduct(productData);
