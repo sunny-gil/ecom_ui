@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 /* 🔥 LIGHT DEFAULT */
+/* 🔥 THEME VARIABLES */
 :root {
   --color-primary: #2E7D32;
   --color-secondary: #A1887F;
@@ -9,6 +10,7 @@
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #ffffff;
+  --bg-alt: #f8fafc;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
 
@@ -17,6 +19,8 @@
   --accent-border: rgba(170, 59, 255, 0.5);
 
   --social-bg: rgba(244, 243, 236, 0.5);
+  --card-bg: #ffffff;
+  --card-border: #f1f5f9;
 
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
@@ -37,24 +41,51 @@
   scroll-behavior: smooth;
 }
 
-/* 🔥 DARK MODE (manual class) */
+/* 🔥 DARK MODE (manual class & system preference) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --text: #d1d5db;
+    --text-h: #ffffff;
+    --bg: #0f172a; /* Deep navy/slate for premium feel */
+    --bg-alt: #1e293b;
+    --border: #334155;
+    --code-bg: #1e293b;
+
+    --accent: #d8b4fe;
+    --accent-bg: rgba(216, 180, 254, 0.1);
+    --accent-border: rgba(216, 180, 254, 0.3);
+
+    --social-bg: rgba(30, 41, 59, 0.5);
+    --card-bg: #1e293b;
+    --card-border: #334155;
+
+    --shadow:
+      rgba(0, 0, 0, 0.6) 0 10px 30px -5px,
+      rgba(0, 0, 0, 0.3) 0 5px 15px -5px;
+  }
+}
+
 .dark {
   --text: #d1d5db;
   --text-h: #ffffff;
-  --bg: #0a0a0c;
-  --border: #1f1f23;
-  --code-bg: #1a1a1e;
+  --bg: #0f172a;
+  --bg-alt: #1e293b;
+  --border: #334155;
+  --code-bg: #1e293b;
 
   --accent: #d8b4fe;
   --accent-bg: rgba(216, 180, 254, 0.1);
   --accent-border: rgba(216, 180, 254, 0.3);
 
-  --social-bg: rgba(30, 30, 35, 0.5);
+  --social-bg: rgba(30, 41, 59, 0.5);
+  --card-bg: #1e293b;
+  --card-border: #334155;
 
   --shadow:
     rgba(0, 0, 0, 0.6) 0 10px 30px -5px,
     rgba(0, 0, 0, 0.3) 0 5px 15px -5px;
 }
+
 
 /* 🔥 MOBILE TWEAK */
 @media (max-width: 768px) {

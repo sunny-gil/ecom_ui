@@ -20,7 +20,7 @@ export default function Blogs() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50/30 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50/30 to-white dark:from-slate-900 dark:to-slate-950">
       <Header />
 
       <main className="flex-grow pt-28 pb-20 px-6">
@@ -28,13 +28,13 @@ export default function Blogs() {
 
           {/* Header */}
           <div className="text-center mb-16">
-            <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 px-4 py-1.5 rounded-full">
+            <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 dark:bg-green-900/20 px-4 py-1.5 rounded-full">
               Read & Learn
             </span>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-4 mb-4">
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">
               Our Premium Journal
             </h1>
-            <p className="text-gray-600 text-lg max-w-xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-xl mx-auto">
               Tips, recipes, and lifestyle guides crafted by industry experts.
             </p>
           </div>
@@ -60,10 +60,10 @@ export default function Blogs() {
                     transition={{ duration: 0.3 }}
                     whileHover={{ y: -8 }}
                     onClick={() => navigate(`/blogs/${blog.id}`)}
-                    className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 flex flex-col group"
+                    className="bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 dark:border-slate-700 flex flex-col group"
                   >
                     {/* Image */}
-                    <div className="relative h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
+                    <div className="relative h-56 overflow-hidden bg-gray-50 dark:bg-slate-900 flex items-center justify-center">
                       <img
                         src={blog.image}
                         alt={blog.title}
@@ -76,21 +76,21 @@ export default function Blogs() {
 
                     {/* Content */}
                     <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                      <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-3">
                         <span>{blog.date}</span>
                         <span>•</span>
                         <span>{blog.readTime}</span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-700 transition-colors mb-2 leading-snug">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors mb-2 leading-snug">
                         {blog.title}
                       </h3>
 
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">
                         {blog.shortDesc}
                       </p>
 
-                      <span className="mt-auto flex items-center text-green-600 font-bold text-sm group-hover:text-green-800 transition">
+                      <span className="mt-auto flex items-center text-green-600 dark:text-green-500 font-bold text-sm group-hover:text-green-800 dark:group-hover:text-green-400 transition">
                         Read Full Article
                         <svg className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -101,6 +101,7 @@ export default function Blogs() {
                 ))}
               </AnimatePresence>
             </motion.div>
+
           )}
 
         </div>

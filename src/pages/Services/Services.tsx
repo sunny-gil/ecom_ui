@@ -23,26 +23,27 @@ const Services = ({ isPreview = false }: Props) => {
   const visibleServices = isPreview ? servicesList.slice(0, 3) : servicesList;
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-950 relative overflow-hidden">
       
       {/* Background soft glow orbs */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-green-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-green-200/20 dark:bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-amber-200/20 dark:bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 px-4 py-1.5 rounded-full">
+          <span className="text-green-600 font-bold tracking-widest text-sm uppercase bg-green-50 dark:bg-green-900/20 px-4 py-1.5 rounded-full">
             Our Offerings
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mt-4 mb-4 tracking-tight">
             Premium Lifestyle Services
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             We don't just sell premium products; we curate exceptional experiences to elevate your everyday living.
           </p>
         </div>
+
 
         {loading ? (
           <div className="py-20 w-full">

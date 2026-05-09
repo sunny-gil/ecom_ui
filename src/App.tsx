@@ -6,21 +6,26 @@ import { OrderProvider } from "./context/OrderContext";
 import CustomCursor from "./components/common/CustomCursor";
 import ScrollProgress from "./components/common/ScrollProgress";
 
+import { ThemeProvider } from "./context/ThemeContext";
+
 function App() {
   return (
     <>
       <ScrollProgress />
       <CustomCursor />
-      <AuthProvider>
-        <CartProvider>
-          <OrderProvider>
-            <AppRoutes />
-            <Chatbot />
-          </OrderProvider>
-        </CartProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <CartProvider>
+            <OrderProvider>
+              <AppRoutes />
+              <Chatbot />
+            </OrderProvider>
+          </CartProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </>
   );
 }
+
 
 export default App;

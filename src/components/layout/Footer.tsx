@@ -6,11 +6,12 @@ const Footer = () => {
     <footer className="relative mt-20 overflow-hidden">
 
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1b5e20] via-[#2e7d32] to-[#1b5e20]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1b5e20] via-[#2e7d32] to-[#1b5e20] dark:from-[#0f172a] dark:via-[#1e293b] dark:to-[#0f172a]" />
 
       {/* Glow */}
-      <div className="absolute top-[-80px] left-[-80px] w-[300px] h-[300px] bg-green-400/20 blur-3xl rounded-full" />
-      <div className="absolute bottom-[-80px] right-[-80px] w-[300px] h-[300px] bg-yellow-300/20 blur-3xl rounded-full" />
+      <div className="absolute top-[-80px] left-[-80px] w-[300px] h-[300px] bg-green-400/20 dark:bg-green-500/10 blur-3xl rounded-full" />
+      <div className="absolute bottom-[-80px] right-[-80px] w-[300px] h-[300px] bg-yellow-300/20 dark:bg-amber-500/10 blur-3xl rounded-full" />
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4 text-white">
 

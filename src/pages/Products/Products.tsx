@@ -49,13 +49,13 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
   }
 
   const mainContent = (
-    <section className="py-20 px-6 bg-gradient-to-b from-white to-green-50">
+    <section className="py-20 px-6 bg-gradient-to-b from-white to-green-50 dark:from-slate-900 dark:to-slate-950">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             {isPreview ? "Our Premium Range" : "Explore All Products"}
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
             Browse through a wide range of categories tailored for your needs.
           </p>
         </div>
@@ -74,7 +74,7 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                     onClick={() => setActiveCategory(cat)}
                     className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${activeCategory === cat
                       ? "bg-green-600 text-white shadow-md scale-105"
-                      : "bg-white text-gray-600 hover:bg-green-100 border border-gray-200 shadow-sm"
+                      : "bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-green-100 dark:hover:bg-green-900/30 border border-gray-200 dark:border-slate-700 shadow-sm"
                       }`}
                   >
                     {cat}
@@ -98,9 +98,9 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                     transition={{ duration: 0.3 }}
                     whileHover={{ y: -8 }}
                     onClick={() => navigate(`/products/${product.id}`)}
-                    className="bg-white rounded-2xl shadow-md overflow-hidden group border border-gray-100 cursor-pointer flex flex-col"
+                    className="bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group border border-gray-100 dark:border-slate-700 cursor-pointer flex flex-col"
                   >
-                    <div className="relative h-56 bg-gray-50 flex items-center justify-center overflow-hidden">
+                    <div className="relative h-56 bg-gray-50 dark:bg-slate-900 flex items-center justify-center overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -112,20 +112,20 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                     </div>
 
                     <div className="p-5 flex flex-col flex-grow">
-                      <h3 className="text-lg font-bold text-gray-900 line-clamp-1">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">
                         {product.name}
                       </h3>
 
-                      <p className="text-sm text-gray-500 mt-1 mb-4 line-clamp-2 min-h-[40px]">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-4 line-clamp-2 min-h-[40px]">
                         {product.shortDesc}
                       </p>
 
                       <div className="mt-auto">
                         <div className="flex justify-between items-center mb-4">
-                          <p className="text-xl font-bold text-green-700">
+                          <p className="text-xl font-bold text-green-700 dark:text-green-500">
                             ₹{product.price}
                           </p>
-                          <div className="flex items-center text-sm font-medium text-gray-600">
+                          <div className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-400">
                             <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
@@ -139,7 +139,7 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                               e.stopPropagation();
                               navigate(`/products/${product.id}`);
                             }}
-                            className="flex-1 py-2 bg-green-50 text-green-700 font-semibold rounded-lg hover:bg-green-100 transition-colors"
+                            className="flex-1 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 font-semibold rounded-lg hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors"
                           >
                             Details
                           </button>
@@ -148,7 +148,7 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                               e.stopPropagation();
                               addToCart(product);
                             }}
-                            className="flex-1 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+                            className="flex-1 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20"
                           >
                             Add to Cart
                           </button>
@@ -159,6 +159,7 @@ const Products = ({ isPreview = false, categoryLimit }: Props) => {
                 ))}
               </AnimatePresence>
             </motion.div>
+
 
             {isPreview && (
               <div className="text-center mt-12">
