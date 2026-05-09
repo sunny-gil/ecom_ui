@@ -41,6 +41,7 @@
   animation: orbFloat 8s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
+  will-change: transform, opacity;
 }
 
 .hero-slider__orb--1 {
@@ -94,6 +95,7 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.35);
   animation: particleRise linear infinite;
+  will-change: transform;
 }
 
 .hero-slider__particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 3px; height: 3px; }
@@ -409,6 +411,7 @@
 .hero-slider__img-inner {
   position: relative;
   animation: heroFloat 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes heroFloat {

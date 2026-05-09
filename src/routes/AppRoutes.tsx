@@ -20,10 +20,12 @@ import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
 import Notifications from "../pages/Notifications/Notifications";
 import Orders from "../pages/Orders/Orders";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

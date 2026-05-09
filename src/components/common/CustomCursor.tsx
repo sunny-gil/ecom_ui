@@ -53,6 +53,7 @@ const CustomCursor = () => {
           scale: isHovering ? 2.5 : 1,
           backgroundColor: isHovering ? 'rgba(46, 125, 50, 0.1)' : 'transparent',
           borderWidth: isHovering ? '1px' : '2px',
+          willChange: 'transform',
         }}
         transition={{ type: 'spring', stiffness: 250, damping: 20 }}
       />
@@ -63,6 +64,7 @@ const CustomCursor = () => {
           y: mouseY,
           translateX: '-50%',
           translateY: '-50%',
+          willChange: 'transform',
         }}
       />
     </>

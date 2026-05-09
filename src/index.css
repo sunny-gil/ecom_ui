@@ -201,9 +201,9 @@ code {
   background: #475569;
 }
 
-/* Smooth Transitions */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+/* Targeted Transitions (much better for performance) */
+body, :root {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Glassmorphism Utility */
